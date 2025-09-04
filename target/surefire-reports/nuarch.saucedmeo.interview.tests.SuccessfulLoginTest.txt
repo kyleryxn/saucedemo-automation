@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: nuarch.saucedmeo.interview.tests.SuccessfulLoginTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.396 s -- in nuarch.saucedmeo.interview.tests.SuccessfulLoginTest

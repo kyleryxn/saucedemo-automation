@@ -1,0 +1,17 @@
+nuarch\saucedmeo\interview\pom\CartPage.class
+nuarch\saucedmeo\interview\pom\ProductDetailsPage.class
+nuarch\saucedmeo\interview\model\Browser.class
+nuarch\saucedmeo\interview\model\BuggyUserCase.class
+nuarch\saucedmeo\interview\pom\CheckoutPage.class
+nuarch\saucedmeo\interview\pom\DefaultPageFactory.class
+nuarch\saucedmeo\interview\model\LoginData.class
+nuarch\saucedmeo\interview\util\TestDataLoader.class
+nuarch\saucedmeo\interview\model\ConfigData.class
+nuarch\saucedmeo\interview\pom\InventoryPage.class
+nuarch\saucedmeo\interview\pom\PageFactory.class
+nuarch\saucedmeo\interview\pom\CompletableCheckout.class
+nuarch\saucedmeo\interview\pom\HasSorting.class
+nuarch\saucedmeo\interview\model\ExpectedBug.class
+nuarch\saucedmeo\interview\pom\HasCart.class
+nuarch\saucedmeo\interview\pom\LoginPage.class
+nuarch\saucedmeo\interview\pom\BasePage.class

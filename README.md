@@ -93,3 +93,7 @@ SauceDemo provides special usernames that each expose unique site behaviors.
 - Java 21+
 - Maven 3.9+
 - Chrome/Firefox/Edge installed locally
+
+## 📄 License
+
+See [LICENSE](LICENSE) for license information.

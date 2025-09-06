@@ -5,4 +5,5 @@ public interface HasCart {
     CartPage openCart();
 
     int itemCount();
+
 }

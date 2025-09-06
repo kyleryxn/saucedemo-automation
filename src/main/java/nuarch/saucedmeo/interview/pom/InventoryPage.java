@@ -1,9 +1,11 @@
 package nuarch.saucedmeo.interview.pom;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
@@ -55,10 +57,6 @@ public class InventoryPage extends BasePage<InventoryPage> implements HasCart, H
         return exists(SORT_SELECT);
     }
 
-    public boolean isAt() {
-        return exists(INVENTORY_CONTAINER);
-    }
-
     public boolean hasCartAreaErrorClass() {
         WebElement cart = driver.findElement(CART_ICON);
         String klass = cart.getAttribute("class");
@@ -66,7 +64,6 @@ public class InventoryPage extends BasePage<InventoryPage> implements HasCart, H
         return klass != null && klass.contains("error");
     }
 
-    /** Old suite compatibility: return header/cart link classes for debugging. */
     public String cartLinkClasses() {
         WebElement cart = driver.findElement(CART_ICON);
         String klass = cart.getAttribute("class");
@@ -74,7 +71,6 @@ public class InventoryPage extends BasePage<InventoryPage> implements HasCart, H
         return klass == null ? "" : klass;
     }
 
-    /** Heuristic visual misalignment check on cart icon vs header bar. */
     public boolean isCartVisuallyMisaligned() {
 
         // Compare vertical alignment of the cart icon vs. the header container
@@ -89,63 +85,11 @@ public class InventoryPage extends BasePage<InventoryPage> implements HasCart, H
         return diff != null && diff == 1L;
     }
 
-    /** Collect product image srcs on inventory. */
     public List<String> imageSrcs() {
         return driver.findElements(PRODUCT_IMAGES).stream()
                 .map(el -> el.getAttribute("src"))
                 .filter(src -> src != null && !src.isBlank())
                 .collect(Collectors.toList());
-    }
-
-    /** Try selecting a sort option by visible text within a timeout; returns true if applied. */
-    public boolean trySelectSortOptionByText(String visibleText, Duration timeout) {
-        long end = System.nanoTime() + timeout.toNanos();
-
-        while (System.nanoTime() < end) {
-            try {
-                WebElement selEl = shouldBeVisible(SORT_SELECT);
-                Select select = new Select(selEl);
-                select.selectByVisibleText(visibleText);
-
-                // Verify selection applied
-                if (select.getFirstSelectedOption().getText().trim().equalsIgnoreCase(visibleText.trim())) {
-                    return true;
-                }
-            } catch (Exception ignored) {
-                /* retry until timeout */
-            }
-
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ie) {
-                Thread.currentThread().interrupt();
-            }
-        }
-
-        return false;
-    }
-
-    /** Wait for an error banner containing text within a timeout. */
-    public boolean waitForErrorContains(String phrase, Duration timeout) {
-        WebDriverWait localWait = new WebDriverWait(driver, timeout);
-
-        // Try alert
-        try {
-            Alert alert = localWait.until(ExpectedConditions.alertIsPresent());
-            if (alert.getText().contains(phrase)) {
-                alert.accept();
-                return true;
-            }
-        } catch (TimeoutException ignored) { /* fall through */ }
-
-        // Try the in-page node
-        try {
-            By anyNodeWithPhrase = By.xpath("//*[contains(.,'" + phrase + "')]");
-            localWait.until(ExpectedConditions.visibilityOfElementLocated(anyNodeWithPhrase));
-            return true;
-        } catch (TimeoutException ignored) {
-            return false;
-        }
     }
 
     public boolean selectSortLowToHigh(Duration timeout) {

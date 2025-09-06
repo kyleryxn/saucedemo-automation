@@ -23,6 +23,7 @@ public class LoginPage extends BasePage<LoginPage> {
         shouldBeVisible(USERNAME);
         shouldBeVisible(PASSWORD);
         shouldBeVisible(LOGIN_BTN);
+
         return this;
     }
 
@@ -31,6 +32,7 @@ public class LoginPage extends BasePage<LoginPage> {
         type(USERNAME, username);
         type(PASSWORD, password);
         click(LOGIN_BTN);
+
         return pages.create(InventoryPage.class).waitForLoaded();
     }
 

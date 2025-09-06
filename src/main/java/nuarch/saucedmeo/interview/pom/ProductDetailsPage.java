@@ -29,6 +29,7 @@ public class ProductDetailsPage extends BasePage<ProductDetailsPage> {
 
     public InventoryPage backToProducts() {
         click(BACK_BTN);
+
         return pages.create(InventoryPage.class).waitForLoaded();
     }
 

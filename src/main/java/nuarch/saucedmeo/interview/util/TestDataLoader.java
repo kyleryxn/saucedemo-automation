@@ -3,8 +3,6 @@ package nuarch.saucedmeo.interview.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import nuarch.saucedmeo.interview.model.ConfigData;
-import nuarch.saucedmeo.interview.model.LoginData;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,13 +36,6 @@ public class TestDataLoader {
         }
     }
 
-    public static List<LoginData> loadLoginDataFromResource(String resourceName) {
-        return loadListFromResource(resourceName, LoginData.class);
-    }
-
-    public static ConfigData loadConfig(String resourceName) {
-        return loadObjectFromResource(resourceName, ConfigData.class);
-    }
 
     private static Reader openReader(String resourceName) {
         InputStream inputStream = TestDataLoader.class
